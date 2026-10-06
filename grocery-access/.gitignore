@@ -1,0 +1,9 @@
+# Downloaded on first run of the notebook
+data/raw/
+notebooks/cache/
+
+# Python
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store

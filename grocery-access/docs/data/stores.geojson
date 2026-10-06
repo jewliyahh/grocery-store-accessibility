@@ -1,0 +1,23 @@
+{
+"type": "FeatureCollection",
+"name": "stores",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"xy_coordinate_resolution": 1e-05,
+"features": [
+{ "type": "Feature", "properties": { "name": "Ralphs", "shop": "supermarket", "in_neighborhood": true }, "geometry": { "type": "Point", "coordinates": [ -117.15463, 32.74937 ] } },
+{ "type": "Feature", "properties": { "name": "Smart & Final", "shop": "supermarket", "in_neighborhood": false }, "geometry": { "type": "Point", "coordinates": [ -117.14039, 32.74811 ] } },
+{ "type": "Feature", "properties": { "name": "Mona Lisa", "shop": "supermarket", "in_neighborhood": false }, "geometry": { "type": "Point", "coordinates": [ -117.16911, 32.72626 ] } },
+{ "type": "Feature", "properties": { "name": "Trader Joe's", "shop": "supermarket", "in_neighborhood": true }, "geometry": { "type": "Point", "coordinates": [ -117.15398, 32.74976 ] } },
+{ "type": "Feature", "properties": { "name": "Whole Foods Market", "shop": "supermarket", "in_neighborhood": true }, "geometry": { "type": "Point", "coordinates": [ -117.1581, 32.74814 ] } },
+{ "type": "Feature", "properties": { "name": "The Market By Buon Appetito", "shop": "supermarket", "in_neighborhood": false }, "geometry": { "type": "Point", "coordinates": [ -117.16803, 32.72228 ] } },
+{ "type": "Feature", "properties": { "name": "Little Brazil Market", "shop": "supermarket", "in_neighborhood": false }, "geometry": { "type": "Point", "coordinates": [ -117.16892, 32.72588 ] } },
+{ "type": "Feature", "properties": { "name": "Trader Joe's", "shop": "supermarket", "in_neighborhood": false }, "geometry": { "type": "Point", "coordinates": [ -117.15523, 32.76617 ] } },
+{ "type": "Feature", "properties": { "name": "Pavilions", "shop": "supermarket", "in_neighborhood": true }, "geometry": { "type": "Point", "coordinates": [ -117.16821, 32.74938 ] } },
+{ "type": "Feature", "properties": { "name": "Open Market", "shop": "supermarket", "in_neighborhood": false }, "geometry": { "type": "Point", "coordinates": [ -117.14983, 32.76801 ] } },
+{ "type": "Feature", "properties": { "name": "Sprouts Farmers Market", "shop": "supermarket", "in_neighborhood": false }, "geometry": { "type": "Point", "coordinates": [ -117.14588, 32.75327 ] } },
+{ "type": "Feature", "properties": { "name": "lazy acres market", "shop": "supermarket", "in_neighborhood": true }, "geometry": { "type": "Point", "coordinates": [ -117.16774, 32.75053 ] } },
+{ "type": "Feature", "properties": { "name": "Specialty Produce", "shop": "greengrocer", "in_neighborhood": false }, "geometry": { "type": "Point", "coordinates": [ -117.18729, 32.74347 ] } },
+{ "type": "Feature", "properties": { "name": "Krisp Beverages + Natural Foods", "shop": "supermarket", "in_neighborhood": false }, "geometry": { "type": "Point", "coordinates": [ -117.15863, 32.71617 ] } },
+{ "type": "Feature", "properties": { "name": "Cash & Carry Italian Market", "shop": "supermarket", "in_neighborhood": false }, "geometry": { "type": "Point", "coordinates": [ -117.16815, 32.72373 ] } }
+]
+}

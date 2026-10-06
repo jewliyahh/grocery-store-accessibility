@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uptown Grocery Access</title>
+  <meta name="description" content="How many Uptown, San Diego residents can reach a grocery store by walking, biking, or bus.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <h1>Can you get groceries without a car in Uptown?</h1>
+  <p>Share of Uptown's <strong id="residents">~38,000</strong> residents who live within a short trip of a grocery store</p>
+</header>
+
+<main class="hero">
+  <aside class="modes" aria-label="Travel modes">
+    <button class="mode" data-mode="walk" aria-pressed="true">
+      <span class="swatch"></span>
+      <span class="name">Walk</span>
+      <span class="trip">10-min walk</span>
+      <span class="pct">–</span>
+      <span class="of">of residents</span>
+    </button>
+    <button class="mode" data-mode="bus" aria-pressed="false">
+      <span class="swatch"></span>
+      <span class="name">Transit</span>
+      <span class="trip">10-min bus + walk</span>
+      <span class="pct">–</span>
+      <span class="of">of residents</span>
+    </button>
+    <button class="mode" data-mode="bike" aria-pressed="false">
+      <span class="swatch"></span>
+      <span class="name">Bike</span>
+      <span class="trip">5-min bike ride</span>
+      <span class="pct">–</span>
+      <span class="of">of residents</span>
+    </button>
+    <ul class="legend">
+      <li><span class="dot"></span>Grocery store</li>
+      <li><span class="dash"></span>Uptown boundary</li>
+    </ul>
+  </aside>
+  <div id="map" role="region" aria-label="Map of grocery access in Uptown"></div>
+</main>
+
+<article class="notes">
+  <p class="scroll-hint">How this was made ↓</p>
+
+  <!-- The write-up below the map lives in about.md: edit that file, not this one -->
+  <div id="about"></div>
+</article>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

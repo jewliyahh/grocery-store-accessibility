@@ -1,0 +1,31 @@
+{
+  "neighborhood": "Uptown",
+  "residents": 39104,
+  "res_buildings": 7125,
+  "modes": {
+    "walk": {
+      "label": "walk",
+      "minutes": 10,
+      "color": "#1b9e77",
+      "pct_people": 0.375,
+      "pct_buildings": 0.271,
+      "residents_within": 14682
+    },
+    "bike": {
+      "label": "bike ride",
+      "minutes": 5,
+      "color": "#7570b3",
+      "pct_people": 0.699,
+      "pct_buildings": 0.601,
+      "residents_within": 27330
+    },
+    "bus": {
+      "label": "bus + walk",
+      "minutes": 10,
+      "color": "#e7298a",
+      "pct_people": 0.567,
+      "pct_buildings": 0.42,
+      "residents_within": 22188
+    }
+  }
+}

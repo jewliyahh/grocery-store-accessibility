@@ -1,0 +1,315 @@
+:root {
+  --walk: #1b9e77;
+  --bus: #e7298a;
+  --bike: #7570b3;
+  --store: #d95f02;
+  --ink: #1f2328;
+  --muted: #59636e;
+  --line: #d8dee4;
+  --bg: #ffffff;
+  --panel: #f6f8fa;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
+}
+
+/* ---------- header ---------- */
+.top {
+  padding: 20px 24px 14px;
+  border-bottom: 1px solid var(--line);
+}
+.top h1 { margin: 0 0 4px; font-size: 1.6rem; line-height: 1.2; }
+.top p { margin: 0; color: var(--muted); max-width: 70ch; }
+
+/* ---------- map + sidebar ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  height: calc(100vh - 110px);
+  min-height: 480px;
+}
+
+.modes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  background: var(--panel);
+  border-right: 1px solid var(--line);
+  overflow-y: auto;
+}
+
+.mode {
+  --c: var(--muted);
+  display: grid;
+  grid-template-columns: 14px 1fr auto;
+  grid-template-areas:
+    "swatch name pct"
+    ".      trip of";
+  column-gap: 10px;
+  align-items: baseline;
+  width: 100%;
+  padding: 12px 14px;
+  font: inherit;
+  text-align: left;
+  color: var(--muted);
+  background: var(--bg);
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color .15s, box-shadow .15s, color .15s;
+}
+.mode[data-mode="walk"] { --c: var(--walk); }
+.mode[data-mode="bus"]  { --c: var(--bus); }
+.mode[data-mode="bike"] { --c: var(--bike); }
+
+.mode:hover { border-color: var(--c); }
+.mode:focus-visible { outline: 3px solid var(--c); outline-offset: 2px; }
+.mode[aria-pressed="true"] {
+  color: var(--ink);
+  border-color: var(--c);
+  box-shadow: inset 5px 0 0 var(--c);
+}
+
+.swatch {
+  grid-area: swatch;
+  width: 14px; height: 14px;
+  border-radius: 3px;
+  border: 2px solid var(--c);
+  align-self: center;
+}
+.mode[aria-pressed="true"] .swatch { background: var(--c); }
+
+.name { grid-area: name; font-weight: 700; font-size: 1.05rem; }
+.trip { grid-area: trip; font-size: .85rem; }
+.pct  { grid-area: pct; font-weight: 800; font-size: 1.5rem; line-height: 1; color: var(--c); text-align: right; }
+.of   { grid-area: of; font-size: .75rem; text-align: right; }
+.mode[aria-pressed="false"] .pct { opacity: .55; }
+
+.legend {
+  list-style: none;
+  margin: auto 0 0;
+  padding: 12px 4px 0;
+  border-top: 1px solid var(--line);
+  font-size: .85rem;
+  color: var(--muted);
+}
+.legend li { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+.legend .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--store); border: 2px solid #fff; box-shadow: 0 0 0 1px var(--store); }
+.legend .dash { width: 18px; border-top: 2px dashed var(--ink); }
+
+#map { height: 100%; background: #e6e6e6; }
+
+.leaflet-tooltip { font-family: var(--sans); font-size: .85rem; }
+
+/* ---------- write-up ---------- */
+.notes {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 8px 24px 64px;
+}
+/* Figures from the notebook: wider than the text so the panels are readable; tap to open full size */
+#about p:has(> a > img) { margin: 16px 0 28px; }
+#about img {
+  display: block;
+  width: min(1200px, calc(100vw - 32px));
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+.scroll-hint { text-align: center; color: var(--muted); font-size: .9rem; margin: 12px 0 0; }
+.notes h2 { margin: 40px 0 8px; font-size: 1.35rem; }
+.notes h3 { margin: 20px 0 4px; font-size: 1rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.notes ul { padding-left: 1.2em; }
+.notes li { margin: 6px 0; }
+.notes a { color: #0969da; }
+code { font-size: .9em; background: var(--panel); padding: 1px 5px; border-radius: 4px; }
+/* Tables in about.md (e.g. even split vs. assessor units); the last column is the method used */
+.notes table { width: 100%; margin: 0 0 28px; border-collapse: collapse; font-size: .92rem; font-variant-numeric: tabular-nums; }
+.notes th, .notes td { padding: 8px 12px; border-bottom: 1px solid var(--line); }
+.notes th { font-weight: 600; color: var(--muted); vertical-align: bottom; }
+.notes th:last-child, .notes td:last-child { background: var(--panel); font-weight: 600; }
+
+/* Datasets in a block beside Assumptions (sections are wrapped by app.js).
+   Wider than the text column so Assumptions has room beside it. */
+.side-by-side {
+  display: grid;
+  grid-template-columns: 440px 1fr;    /* wide enough that Datasets ends about level with Assumptions */
+  gap: 32px;
+  align-items: start;
+  width: min(1120px, calc(100vw - 48px));
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 32px;
+}
+#datasets {
+  position: sticky;
+  top: 16px;
+  padding: 4px 18px 0;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: .9rem;
+}
+#datasets h2 { margin-top: 12px; font-size: 1.1rem; }
+#datasets ul { padding-left: 0; list-style: none; }
+#datasets > ul > li { margin: 0 0 12px; }
+#datasets li ul { padding-left: 2em; margin: 2px 0 0; list-style: disc; color: var(--muted); }
+#datasets li li { margin: 2px 0; }
+/* Assumptions: Travel's short facts as tinted chips; Where people live as a list with dividers */
+#assumptions h2 { margin-top: 12px; }
+#assumptions h3 { margin: 24px 0 10px; }
+#assumptions h2 + h3 { margin-top: 12px; }
+#assumptions h2 + h3 + ul { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; }
+#assumptions h2 + h3 + ul > li {
+  margin: 0;
+  padding: 6px 12px;
+  background: color-mix(in srgb, var(--walk) 12%, white);
+  border: 1px solid color-mix(in srgb, var(--walk) 40%, white);
+  border-radius: 999px;
+  font-size: .9rem;
+  color: #0f5a44;
+}
+#assumptions h3 + ul:not(h2 + h3 + ul) { padding: 0; list-style: none; border-top: 1px solid var(--line); }
+#assumptions h3 + ul:not(h2 + h3 + ul) > li { margin: 0; padding: 10px 0 10px 22px; border-bottom: 1px solid var(--line); position: relative; }
+#assumptions h3 + ul:not(h2 + h3 + ul) > li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1.05em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--walk);
+}
+#assumptions p:last-child { margin-top: 12px; font-size: .9rem; color: var(--muted); }
+@media (max-width: 900px) {
+  .side-by-side { grid-template-columns: 1fr; gap: 16px; width: auto; left: 0; transform: none; }
+  #datasets { position: static; }
+}
+
+/* Sections after the Datasets/Assumptions row share its width, so they line up under the Datasets box.
+   Text keeps a readable line length; figures fill the full width. */
+#data-decisions, #the-work {
+  width: min(1120px, calc(100vw - 48px));
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#data-decisions > :not(p:has(> a > img)), #the-work > * { max-width: 760px; }
+#data-decisions img { width: 100%; left: 0; transform: none; }
+#data-decisions img[src$="residents-map.png"] { max-width: 820px; }    /* square map: full width would be too tall */
+@media (max-width: 900px) {
+  #data-decisions, #the-work { width: auto; left: 0; transform: none; }
+}
+
+/* Decision tree in about.md: how each Census block's people get placed. Dashed boxes = a data gap filled in.
+   Each answer (Yes/No pill) sits beside its box; the lines hang from the left edge of the box above. */
+.notes .tree { --step: 36px; --gap: 12px; --mid: calc(8px + .7em); margin: 16px 0 28px; font-size: .92rem; line-height: 1.4; }
+.notes .tree, .notes .tree ul { list-style: none; margin-left: 0; padding: 0; }
+.notes .tree ul { margin: 0 0 0 16px; padding-left: calc(var(--step) - 16px); }
+.notes .tree li { position: relative; display: flex; align-items: flex-start; gap: 8px; margin: var(--gap) 0 0; }
+.tree .col { flex: 1; min-width: 0; }
+.tree .node {
+  display: inline-block;
+  max-width: 100%;
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+}
+.tree .node small { display: block; margin-top: 2px; font-size: .82rem; font-weight: 400; color: var(--muted); }
+.tree .start { background: var(--ink); border-color: var(--ink); color: #fff; font-weight: 600; }
+.tree .start small { color: #c9d1d9; }
+.tree .ask { background: var(--panel); font-weight: 600; }
+.tree .leaf { border-left: 4px solid var(--walk); }
+.tree .leaf.gap { border: 1px dashed var(--muted); border-left: 4px solid var(--store); }
+.tree .ex { font-weight: 700; color: var(--store); }
+.tree .ans {
+  flex: none;
+  margin-top: 7px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 700;
+  color: #fff;
+}
+.tree .ans.yes { background: var(--walk); }
+.tree .ans.no { background: var(--store); }
+/* Connectors: an elbow into each child, and a line on down to the next sibling */
+.tree ul > li::before, .tree ul > li::after { content: ""; position: absolute; left: calc(-1 * (var(--step) - 16px)); border-left: 2px solid var(--line); }
+.tree ul > li::before {
+  top: calc(-1 * var(--gap));
+  width: calc(var(--step) - 20px);
+  height: calc(var(--gap) + var(--mid));
+  border-bottom: 2px solid var(--line);
+  border-bottom-left-radius: 6px;
+}
+.tree ul > li::after { top: var(--mid); bottom: 0; }
+.tree ul > li:last-child::after { display: none; }
+/* Phone: each Yes/No pill goes above its box, so deep branches keep their width */
+@media (max-width: 720px) {
+  .notes .tree { --step: 22px; --mid: 9px; font-size: .88rem; }
+  .notes .tree li { flex-direction: column; gap: 4px; }
+  .tree .ans { margin-top: 0; }
+  .tree .node { overflow-wrap: anywhere; }
+  .notes .tree ul { margin-left: 8px; padding-left: calc(var(--step) - 8px); }
+  .tree ul > li::before, .tree ul > li::after { left: calc(-1 * (var(--step) - 8px)); }
+  .tree ul > li::before { width: calc(var(--step) - 12px); }
+}
+
+/* A paragraph that is just a link (e.g. "See the notebook") becomes a button */
+#about p > a:only-child:not(:has(img)),
+.button {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 10px 16px;
+  color: #fff !important;
+  background: var(--ink);
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+#about p > a:only-child:not(:has(img)):hover,
+.button:hover { background: #000; }
+
+/* ---------- phone: buttons go above the map ---------- */
+@media (max-width: 720px) {
+  .top { padding: 16px; }
+  .top h1 { font-size: 1.3rem; }
+  .hero { grid-template-columns: 1fr; grid-template-rows: auto 1fr; height: auto; }
+  .modes {
+    flex-direction: row;
+    gap: 8px;
+    padding: 10px 16px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+  }
+  .mode {
+    grid-template-columns: 1fr;
+    grid-template-areas: "name" "pct" "of";
+    flex: 1 0 0;
+    min-width: 0;
+    padding: 8px 10px;
+    text-align: center;
+  }
+  .mode .swatch, .mode .trip { display: none; }
+  .pct, .of { text-align: center; }
+  .pct { margin-top: 4px; font-size: 1.3rem; }
+  .legend { display: none; }
+  #map { height: 65vh; }
+  .notes { padding: 8px 16px 48px; }
+}
