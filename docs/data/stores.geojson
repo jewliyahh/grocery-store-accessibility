@@ -14,6 +14,7 @@
 { "type": "Feature", "properties": { "name": "Trader Joe's", "shop": "supermarket", "in_neighborhood": false }, "geometry": { "type": "Point", "coordinates": [ -117.15523, 32.76617 ] } },
 { "type": "Feature", "properties": { "name": "Pavilions", "shop": "supermarket", "in_neighborhood": true }, "geometry": { "type": "Point", "coordinates": [ -117.16821, 32.74938 ] } },
 { "type": "Feature", "properties": { "name": "Open Market", "shop": "supermarket", "in_neighborhood": false }, "geometry": { "type": "Point", "coordinates": [ -117.14983, 32.76801 ] } },
+{ "type": "Feature", "properties": { "name": "Whole Foods Market", "shop": "supermarket", "in_neighborhood": false }, "geometry": { "type": "Point", "coordinates": [ -117.16521, 32.71862 ] } },
 { "type": "Feature", "properties": { "name": "Sprouts Farmers Market", "shop": "supermarket", "in_neighborhood": false }, "geometry": { "type": "Point", "coordinates": [ -117.14588, 32.75327 ] } },
 { "type": "Feature", "properties": { "name": "lazy acres market", "shop": "supermarket", "in_neighborhood": true }, "geometry": { "type": "Point", "coordinates": [ -117.16774, 32.75053 ] } },
 { "type": "Feature", "properties": { "name": "Specialty Produce", "shop": "greengrocer", "in_neighborhood": false }, "geometry": { "type": "Point", "coordinates": [ -117.18729, 32.74347 ] } },
