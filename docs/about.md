@@ -37,14 +37,14 @@
 ## Data Decisions
 
 ### How do you get from your door to the street?
-- **First attempt:** a straight line to the nearest intersection (node). This works in theory, but it cuts through buildings and yards you might not actually be able to walk through. Also, the nearest node might be in the opposite direction from the grocery store.
-- **Current method:** walk to the closest street at a right angle, then go along it in whichever direction gets you to a store sooner.
+- **First attempt:** a straight line to the nearest intersection (node). This worked in theory, but it cuts through buildings/yards. Also, I found the nearest node can be in the opposite direction of the grocery store.
+- **Current method:** walk to the closest street, then towards the grocery store.
 
 [![Left: a straight line to the nearest intersection. Middle: a right-angle walk to the street, then along it to an intersection. Right: the whole trip to the store.](img/street-access.png)](img/street-access.png)
 
 ### Who lives in which building?
 
-The Census counts people per block, not per building. Since the walk/transit/bike zones cut through blocks, the Census population had to be spread out within each block. This analysis used building and unit data to estimate that spread.
+The Census data is only available at the block level. I decided to spread the population out within each block to get the most accurate representation of the accessibility percentages. This analysis used building and unit data to estimate that spread.
 
 Methods explored:
 
@@ -103,6 +103,8 @@ Was all this population work worth it? Probably not, but I enjoyed the deep dive
 | Within 10-min walk | 37.0% | 37.5% |
 | Within 5-min bike ride | 68.7% | 69.9% |
 | Within 10-min bus + walk | 54.1% | 56.7% |
+
+As you can see the difference is miniscule. 
 
 ## The work
 
